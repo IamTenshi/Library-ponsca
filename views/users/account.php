@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    require_once("../../config/config.php");
 
     // Establecer tiempo de vida de la sesión en segundos
     $inactividad = 600;
@@ -22,7 +23,7 @@
     <title>Library Project</title>
     <meta name="author" content="Angel Jimenez">
     <meta name="description" content="it's a project about a school library">
-    <?php require("helpers/helpers.php"); tailwind_link(); sweetalert_link();?>
+    <?php require("../../helpers/helpers.php"); tailwind_link(); sweetalert_link(); editAccountStyle();?>
 </head>
 <body class="bg-gray-100 font-family-karla flex">
     <?php if (!isset($_SESSION['user'])) { 
@@ -35,17 +36,18 @@
                     confirmButtonText: 'Log in',
                     confirmButtonColor: '#3d68ff'
                 }).then(function() {
-                        window.location = 'views/users/login.php';
+                        window.location = 'login.php';
                 })
             </script>
         ";
+    
         session_destroy();
         die();
         }
     ?>
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
         <div class="p-6">
-            <a href="index.php" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Library</a>
+            <a href="../../index.php" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Library</a>
             <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
                 <i class="fas fa-plus mr-3"></i> Lending
             </button>
@@ -89,10 +91,10 @@
                 </button>
                 <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
                 <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
-                    <form action="views/users/account.php">
-                        <button class="block w-full px-4 py-2 account-link hover:text-white">Account</button>
+                    <form action="account.php" method="post">
+                        <button name="accountEdit" class="block w-full px-4 py-2 account-link hover:text-white">Account</button>
                     </form>
-                    <form action="views/users/logout.php">
+                    <form action="logout.php">
                         <button class="block w-full px-4 py-2 account-link hover:text-white">Sign Out</button>
                     </form>
                 </div>
@@ -147,6 +149,45 @@
     
         <div class="w-full overflow-x-hidden border-t flex flex-col">
             <main class="w-full flex-grow p-6">
+                <div class="row rounded bg-white mt-20">
+                    <div class="col-md-4 border-right">
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                            <?php
+                                $user = $_SESSION['user'];
+                                $getProfileImg = mysqli_query($conn, "SELECT profile_img_url FROM `library`.`users` WHERE `username` = '$user'");
+                        
+                                while ($data = mysqli_fetch_assoc($getProfileImg)) {
+                            ?>                        
+                            <img class="rounded-circle mt-5 h-20 w-20" src="<?php echo $data['profile_img_url'] ?>" width="90">
+                            <?php
+                                }
+                            ?>
+                            <span class="font-weight-bold mt-0.5"><?php echo $_SESSION['user'] ?></span>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <form action="editProfile.php" method="POST" enctype="multipart/form-data" class="p-3 py-5">
+                            <div class="row mt-2">
+                                <span class="col-md-6">Change password</span>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6"><input name="passkey" type="text" class="form-control" placeholder="Password"></div>
+                                <div class="col-md-6"><input name="confirmPasskey" type="text" class="form-control" placeholder="Confirm password"></div>
+                            </div>
+                            <div class="row mt-2">
+                                <span class="col-md-6">Change profile picture</span>
+                            </div>
+                            <div class="custom-file mt-2">
+                            <?php tailwind_link2();?>
+                            <input name="profileImg" class="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-[0_0_0_1px] focus:shadow-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100" type="file" id="formFileMultiple">
+                            <?php tailwind_link(); editAccountStyle();?>
+                            </div>
+                            <div class="mt-5 text-right">
+                                <button class="btn btn-primary profile-button" type="submit">Edit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </main>
         </div>
     </div>
