@@ -224,13 +224,14 @@
                                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                         <span class="relative inline-block px-3 py-1 font-semibold text-gray-900 leading-tight">
                                                         <span aria-hidden class="absolute inset-0 bg-red-500 opacity-50 rounded-full"></span>
-                                                        <form method="post">
-                                                            <button type="button" name="deleteUserButton" class="deleteUserButton relative font-bold">Delete</span>
+                                                        <form action="deleteUser.php" method="post">
+                                                            <input type="hidden" name="username" value="<?php echo $row['username']; ?>">
+                                                            <button type="submit" name="deleteUserButton" class="relative font-bold">
+                                                                Delete
+                                                            </button>
                                                         </form>
                                                         </span>
-                                                        <?php
-                                                            //*!ARREGLAR ESTO
-                                                        ?>
+                                                        </span>
                                                     </td>
                                                 </tr>
 <?php                                       }
@@ -246,7 +247,7 @@
             </main>
         </div>
     </div>
-    <script>
+    <!-- <script>
         let deleteButton = document.querySelectorAll('.deleteUserButton');
 
         deleteButton.forEach(button => {
@@ -260,7 +261,7 @@
                 })
             });
         });
-    </script>
+    </script> -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
