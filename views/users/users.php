@@ -225,22 +225,12 @@
                                                         <span class="relative inline-block px-3 py-1 font-semibold text-gray-900 leading-tight">
                                                         <span aria-hidden class="absolute inset-0 bg-red-500 opacity-50 rounded-full"></span>
                                                         <form method="post">
-                                                            <button type="button" name="deleteUserButton" id="deleteUserButton" class="relative font-bold">Delete</span>
+                                                            <button type="button" name="deleteUserButton" class="deleteUserButton relative font-bold">Delete</span>
                                                         </form>
                                                         </span>
-                                                        <script>
-                                                            let deleteButton = document.getElementById('deleteUserButton');
-
-                                                            deleteButton.addEventListener('click', () => {
-                                                                Swal.fire({
-                                                                    title: 'Deleted!',
-                                                                    text: 'The user has been deleted.',
-                                                                    icon: 'success',
-                                                                    confirmButtonColor: '#3d68ff',
-                                                                    confirmButtonText: 'Accept'
-                                                                })
-                                                            });
-                                                        </script>
+                                                        <?php
+                                                            //*!ARREGLAR ESTO
+                                                        ?>
                                                     </td>
                                                 </tr>
 <?php                                       }
@@ -256,7 +246,21 @@
             </main>
         </div>
     </div>
-    
+    <script>
+        let deleteButton = document.querySelectorAll('.deleteUserButton');
+
+        deleteButton.forEach(button => {
+            button.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'Deleted!',
+                    text: 'The user has been deleted.',
+                    icon: 'success',
+                    confirmButtonColor: '#3d68ff',
+                    confirmButtonText: 'Accept'
+                })
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
