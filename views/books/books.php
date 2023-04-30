@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    require_once("../../config/config.php"); 
 
     // Establecer tiempo de vida de la sesión en segundos
     $inactividad = 600;
@@ -8,7 +9,7 @@
         $sessionTTL = time() - $_SESSION["timeout"];
         if($sessionTTL > $inactividad){
             session_destroy();
-            header('Location:users/login.php');
+            header('Location:../users/login.php');
         }
     }
     $_SESSION["timeout"] = time();
@@ -22,7 +23,7 @@
     <title>Library Project</title>
     <meta name="author" content="Angel Jimenez">
     <meta name="description" content="it's a project about a school library">
-    <?php require("helpers/helpers.php"); tailwind_link(); sweetalert_link();?>
+    <?php require("../../helpers/helpers.php"); tailwind_link(); sweetalert_link();?>
 </head>
 <body class="bg-gray-100 font-family-karla flex">
     <?php if (!isset($_SESSION['user'])) { 
@@ -35,7 +36,7 @@
                     confirmButtonText: 'Log in',
                     confirmButtonColor: '#3d68ff'
                 }).then(function() {
-                        window.location = 'views/users/login.php';
+                        window.location = '../users/login.php';
                 })
             </script>
         ";
@@ -45,19 +46,19 @@
     ?>
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
         <div class="p-6">
-            <a href="index.php" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Library</a>
+            <a href="../../index.php" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Library</a>
             <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
                 <i class="fas fa-plus mr-3"></i> Lending
             </button>
         </div>
         <nav class="text-white text-base font-semibold pt-3">
-            <a href="views\books\books.php" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
+            <a href="books.php" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
                 </svg>
                 Books
             </a>
-            <a href="views\users\users.php" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="..\users\users.php" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
@@ -77,10 +78,10 @@
                 </button>
                 <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
                 <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
-                    <form action="views/users/account.php">
+                    <form action="../users/account.php">
                         <button class="block w-full px-4 py-2 account-link hover:text-white">Account</button>
                     </form>
-                    <form action="views/users/logout.php">
+                    <form action="../users/logout.php">
                         <button class="block w-full px-4 py-2 account-link hover:text-white">Sign Out</button>
                     </form>
                 </div>
@@ -103,7 +104,7 @@
                     </svg>
                     Books
                 </a>
-                <a href="views/users/users.php" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="../users/users.php" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
@@ -122,7 +123,79 @@
         </header>
     
         <div class="w-full overflow-x-hidden border-t flex flex-col">
-            <main class="w-full flex-grow p-6">
+        <main class="w-full flex-grow p-6">
+                <div class="container mx-auto px-4 sm:px-8">
+                    <div class="py-8">
+                        <div>
+                            <h2 class="text-2xl font-semibold leading-tight">Books</h2>
+                        </div>
+                        <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                            <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                                <table class="min-w-full leading-normal">
+                                    <thead>
+                                        <tr>
+                                            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                                Book
+                                            </th>
+                                            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                                Topic
+                                            </th>
+                                            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                                Author
+                                            </th>
+                                            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                                Settings
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+<?php                                   
+                                        $getBooks = mysqli_query($conn, "SELECT * FROM `library`.`books`");
+
+                                        if ($getBooks->num_rows > 0) {
+                                            while ($row = mysqli_fetch_array($getBooks)) {
+?>                                              <tr>
+                                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                        <div class="flex items-center">
+                                                            <div class="flex-shrink-0 w-10 h-10">
+                                                                <img class="w-full h-full" src="<?php echo $row['cover_url'];?>" alt="cover image" />
+                                                            </div>
+                                                            <div class="ml-3">
+                                                                <p class="text-gray-900 whitespace-no-wrap">
+                                                                    <?php echo $row['name'];?>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+<?php                                               
+                                                    echo '<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">'.$row['topic'].'</td>';
+                                                    echo '<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">'.$row['author'].'</td>';
+
+?>
+                                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                        <span class="relative inline-block px-3 py-1 font-semibold text-gray-900 leading-tight">
+                                                        <span aria-hidden class="absolute inset-0 bg-red-500 opacity-50 rounded-full"></span>
+                                                        <form action="deleteBook.php" method="post">
+                                                            <input type="hidden" name="bookName" value="<?php echo $row['name']; ?>">
+                                                            <button type="submit" name="deleteBookButton" class="relative font-bold">
+                                                                Delete
+                                                            </button>
+                                                        </form>
+                                                        </span>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+<?php                                       }
+                                        } 
+                                        $conn->close();
+?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button class="bg-sidebar hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">New book</button>
+                        </div>
+                    </div>
+                </div>
             </main>
         </div>
     </div>

@@ -1,8 +1,4 @@
 <?php 
-    function base_url() {
-        return $base_url;
-    };
-
     function tailwind_link(){
         echo '
             <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
