@@ -192,7 +192,53 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <button class="bg-sidebar hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">New book</button>
+
+                            <button id="new-book-button" class="bg-sidebar hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-2">New book</button>
+
+                            <div id="new-book-form" class="bg-white p-6 rounded-lg shadow-md" style="display: none;">
+                                <form action="addBook.php" method="post" enctype="multipart/form-data">
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 text-sm font-bold mb-2" for="title">Title:</label>
+                                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="title" name="title">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 text-sm font-bold mb-2" for="topic">Topic:</label>
+                                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="topic" name="topic">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 text-sm font-bold mb-2" for="author">Author:</label>
+                                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="author" name="author">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 text-sm font-bold mb-2" for="cover-file">Cover Image:</label>
+                                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file" id="cover-file" name="cover-file">
+                                    </div>
+                                    <input class="bg-sidebar hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer" type="submit" value="Submit">
+                                </form>
+                            </div>
+
+                            <script>
+                                class BookForm {
+                                    constructor(newBookButtonSelector, newBookFormSelector) {
+                                        this.newBookButton = document.querySelector(newBookButtonSelector);
+                                        this.newBookForm = document.querySelector(newBookFormSelector);
+
+                                        this.newBookButton.addEventListener('click', () => {
+                                            this.toggleFormVisibility();
+                                        });
+                                    }
+
+                                    toggleFormVisibility() {
+                                        if (this.newBookForm.style.display === 'none') {
+                                            this.newBookForm.style.display = 'block';
+                                        } else {
+                                            this.newBookForm.style.display = 'none';
+                                        }
+                                    }
+                                }
+
+                                const bookForm = new BookForm('#new-book-button', '#new-book-form');
+                            </script>
                         </div>
                     </div>
                 </div>

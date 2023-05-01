@@ -185,27 +185,55 @@
                                     </tbody>
                                 </table>
                             </div>
+
+                            <button id="new-user-button" class="bg-sidebar hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-2">New user</button>
+
+                            <div id="new-user-form" class="bg-white p-6 rounded-lg shadow-md" style="display: none;">
+                                <form action="addUser.php" method="post" enctype="multipart/form-data">
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 text-sm font-bold mb-2" for="title">Username:</label>
+                                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="username" name="username">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 text-sm font-bold mb-2" for="topic">Password:</label>
+                                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="password" name="password">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 text-sm font-bold mb-2" for="cover-file">Profile Image:</label>
+                                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file" id="profile-img" name="profile-img">
+                                    </div>
+                                    <input class="bg-sidebar hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer" type="submit" value="Submit">
+                                </form>
+                            </div>
+
+                            <script>
+                                class UserForm {
+                                    constructor(newUserButtonSelector, newUserFormSelector) {
+                                        this.newUserButton = document.querySelector(newUserButtonSelector);
+                                        this.newUserForm = document.querySelector(newUserFormSelector);
+
+                                        this.newUserButton.addEventListener('click', () => {
+                                            this.toggleFormVisibility();
+                                        });
+                                    }
+
+                                    toggleFormVisibility() {
+                                        if (this.newUserForm.style.display === 'none') {
+                                            this.newUserForm.style.display = 'block';
+                                        } else {
+                                            this.newUserForm.style.display = 'none';
+                                        }
+                                    }
+                                }
+
+                                const userForm = new UserForm('#new-user-button', '#new-user-form');
+                            </script>
                         </div>
                     </div>
                 </div>
             </main>
         </div>
     </div>
-    <!-- <script>
-        let deleteButton = document.querySelectorAll('.deleteUserButton');
-
-        deleteButton.forEach(button => {
-            button.addEventListener('click', () => {
-                Swal.fire({
-                    title: 'Deleted!',
-                    text: 'The user has been deleted.',
-                    icon: 'success',
-                    confirmButtonColor: '#3d68ff',
-                    confirmButtonText: 'Accept'
-                })
-            });
-        });
-    </script> -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
