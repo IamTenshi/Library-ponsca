@@ -47,9 +47,11 @@
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
         <div class="p-6">
             <a href="../../index.php" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Library</a>
-            <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                <i class="fas fa-plus mr-3"></i> Lending
-            </button>
+            <a href="../lending/lending.php">
+                <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
+                    <i class="fas fa-plus mr-3"></i> Lending
+                </button>
+            </a>
         </div>
         <nav class="text-white text-base font-semibold pt-3">
             <a href="books.php" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
@@ -144,7 +146,7 @@
                                                 Author
                                             </th>
                                             <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                                Settings
+                                                Actions
                                             </th>
                                         </tr>
                                     </thead>
