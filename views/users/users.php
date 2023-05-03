@@ -167,7 +167,7 @@
                                                         </div>
                                                     </td>
 <?php                                               
-                                                    echo '<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">'.$row['password'].'</td>';
+                                                    echo '<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">*********</td>';
 ?>
                                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                         <span class="relative inline-block px-3 py-1 font-semibold text-gray-900 leading-tight">
