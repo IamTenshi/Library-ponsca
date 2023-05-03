@@ -219,10 +219,6 @@
                                     <input class="bg-sidebar hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer" type="submit" value="Submit">
                                 </form>
                             </div>
-                            <?php 
-                            
-                            
-                            ?>
 
                             <script>
                                 class UserForm {
