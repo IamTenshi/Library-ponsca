@@ -1,13 +1,10 @@
 <?php
     require_once("../../config/config.php");
-
     class Lending {
         private $conn;
-
         public function __construct($conn) {
             $this->conn = $conn;
         }
-
         public function deleteLending($id) {
             $deleteLendingQuery = "DELETE FROM `library`.`lendings` WHERE id = ?";
             $stmt = mysqli_prepare($this->conn, $deleteLendingQuery);
