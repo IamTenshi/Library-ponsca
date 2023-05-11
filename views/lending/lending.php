@@ -187,6 +187,7 @@
                                                                 <span aria-hidden class="absolute inset-0 bg-red-500 opacity-50 rounded-full"></span>
                                                                     <form action="deleteLending.php" method="post">
                                                                         <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                                                        <input type="hidden" name="book_name" value="<?php echo $row['book_name']; ?>">
                                                                         <button type="submit" name="deleteLendingButton" class="relative font-bold">
                                                                             Delete
                                                                         </button>
