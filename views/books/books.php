@@ -169,11 +169,8 @@
                                                             </div>
                                                         </div>
                                                     </td>
-<?php                                               
-                                                    echo '<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">'.$row['topic'].'</td>';
-                                                    echo '<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">'.$row['author'].'</td>';
-
-?>
+                                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><?php echo $row['topic'];?></td>
+                                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><?php echo $row['author'];?></td>
                                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                         <span class="relative inline-block px-3 py-1 font-semibold text-gray-900 leading-tight">
                                                         <span aria-hidden class="absolute inset-0 bg-red-500 opacity-50 rounded-full"></span>

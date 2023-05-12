@@ -172,13 +172,10 @@
                                         if ($getLendings->num_rows > 0) {
                                             while ($row = mysqli_fetch_array($getLendings)) {
 ?>                                              <tr>
-<?php
-                                                    echo '<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">'.$row['book_name'].'</td>';
-                                                    echo '<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">'.$row['users_username'].'</td>';
-                                                    echo '<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">'.$row['lending_date'].'</td>';
-                                                    echo '<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">'.$row['devolution_date'].'</td>';
-
-?>
+                                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><?php echo $row['book_name'];?></td>
+                                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><?php echo $row['users_username'];?></td>
+                                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><?php echo $row['lending_date'];?></td>
+                                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><?php echo $row['devolution_date'];?></td>
                                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                         <div class="inline"></div>
                                                         <div class="inline"></div>
