@@ -203,6 +203,9 @@
                             </div>
 
                             <button id="new-book-button" class="bg-sidebar hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-2">New book</button>
+                            <a href="reportBooks.php">
+                                <button id="book-report-button" class="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded mb-2">Report</button>
+                            </a>
 
                             <div id="new-book-form" class="bg-white p-6 rounded-lg shadow-md" style="display: none;">
                                 <form action="addBook.php" method="post" enctype="multipart/form-data">

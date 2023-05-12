@@ -1,0 +1,68 @@
+<?php
+	require('../../lib/fpdf.php');
+	require('../../config/config.php');
+
+	class PDF extends FPDF {
+		// Function to set fill color for header cells
+		function HeaderCell($w, $h, $txt, $border = 0, $ln = 0, $align = 'L', $fill = false) {
+			// Set fill color for header cells
+			$this->SetFillColor(200, 220, 255);
+			// Output the cell with the specified fill color
+			$this->Cell($w, $h, $txt, $border, $ln, $align, true);
+		}
+	}
+
+	$pdf = new PDF();
+	$pdf->AddPage();
+	$pdf->SetFont('Arial', 'B', 16);
+
+	// Image
+	$imagePath = '../../assets/img/ponsca_logo.png';
+	$imageWidth = 30;
+	$imageX = ($pdf->GetPageWidth() - $imageWidth) / 2;
+	$pdf->Image($imagePath, $imageX, 10, $imageWidth);
+
+	// Title
+	$title = 'Reporte de Libros';
+	$titleWidth = $pdf->GetStringWidth($title);
+	$titleX = ($pdf->GetPageWidth() - $titleWidth) / 2;
+	$titleY = 40; // Adjust this value to move the title up or down
+	$pdf->SetXY($titleX, $titleY);
+	$pdf->Cell($titleWidth, 20, $title);
+
+	// Add space between title and table
+	$pdf->Ln(20);
+
+	$pdf->SetFont('Arial', 'B', 9);
+
+	// Calculate the width of the table
+	$tableWidth = 200; // 4 columns * 50 units width per column
+
+	// Calculate the x position for the first cell to center the table
+	$x = ($pdf->GetPageWidth() - $tableWidth) / 2;
+	$pdf->SetX($x);
+
+	// Header row
+	$pdf->HeaderCell(50, 8, 'Title', 1, 0, 'C');
+	$pdf->HeaderCell(50, 8, 'Topic', 1, 0, 'C');
+	$pdf->HeaderCell(50, 8, 'Author', 1, 0, 'C');
+	$pdf->HeaderCell(50, 8, 'Stock', 1, 0, 'C');
+
+	$pdf->Ln();
+
+	// Data rows
+	// Query database for data
+	$result = mysqli_query($conn, "SELECT * FROM `library`.`books`");
+
+	while ($row = mysqli_fetch_array($result)) {
+		$pdf->SetX($x);
+		$pdf->Cell(50, 8, $row['name'], 1, 0, 'C');
+		$pdf->Cell(50, 8, $row['topic'], 1, 0, 'C');
+		$pdf->Cell(50, 8, $row['author'], 1, 0, 'C');
+		$pdf->Cell(50, 8, $row['stock'], 1, 0, 'C');
+
+		$pdf->Ln();
+	}
+
+	$pdf->Output();
+?>
