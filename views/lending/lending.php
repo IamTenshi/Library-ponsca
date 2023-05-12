@@ -86,7 +86,17 @@
             <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
                 <button @click="isOpen = !isOpen" class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
                     <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                        <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        <?php
+                            $user = $_SESSION['user'];
+                            $getProfileImgQuery = "SELECT profile_img_url FROM `library`.`users` WHERE `username` = '$user'";
+                            $getProfileImgQueryResult = mysqli_query($conn, $getProfileImgQuery);
+                            
+                            if ($data = mysqli_fetch_assoc($getProfileImgQueryResult)) {
+                            ?> 
+                            <img class="absolute w-12 h-12" src="<?php echo $data['profile_img_url'] ?>" width="90" height="90">
+                            <?php
+                            }
+                        ?>
                     </div>
                 </button>
                 <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
