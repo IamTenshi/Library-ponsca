@@ -153,6 +153,9 @@
                                                 Password
                                             </th>
                                             <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                                Phone Number
+                                            </th>
+                                            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                                 Actions
                                             </th>
                                         </tr>
@@ -177,6 +180,7 @@
                                                         </div>
                                                     </td>                                             
                                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">*********</td>
+                                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><?php echo $row['phone_number'];?></td>
                                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                         <span class="relative inline-block px-3 py-1 font-semibold text-gray-900 leading-tight">
                                                         <span aria-hidden class="absolute inset-0 bg-red-500 opacity-50 rounded-full"></span>
@@ -209,6 +213,10 @@
                                     <div class="mb-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2" for="topic">Password:</label>
                                         <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="password" name="password">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 text-sm font-bold mb-2" for="phone-number">Phone Number:</label>
+                                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="phone-number" name="phone-number">
                                     </div>
                                     <div class="mb-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2" for="cover-file">Profile Image:</label>

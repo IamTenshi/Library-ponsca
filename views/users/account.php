@@ -164,6 +164,12 @@
                                 <div class="col-md-6"><input name="confirmPasskey" type="text" class="form-control" placeholder="Confirm password"></div>
                             </div>
                             <div class="row mt-2">
+                                <span class="col-md-6">Change phone number</span>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-12"><input name="phoneNumber" type="text" class="form-control" placeholder="Phone Number"></div>
+                            </div>
+                            <div class="row mt-2">
                                 <span class="col-md-6">Change profile picture</span>
                             </div>
                             <div class="custom-file mt-2">

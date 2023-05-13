@@ -196,7 +196,7 @@
                                                                         <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                                                                         <input type="hidden" name="book_name" value="<?php echo $row['book_name']; ?>">
                                                                         <button type="submit" name="deleteLendingButton" class="relative font-bold">
-                                                                            Delete
+                                                                            Return
                                                                         </button>
                                                                     </form>
                                                                 </span>

@@ -10,7 +10,7 @@
             $this->conn = $conn;
         }
 
-        public function createUser($username, $password, $profileImgFile) {
+        public function createUser($username, $password, $phoneNumber, $profileImgFile) {
             // Set the default profile image URL
             $profileImgUrl = '';
 
@@ -36,8 +36,13 @@
             }
 
             // Insert the data into the database using a prepared statement
-            $stmt = $this->conn->prepare("INSERT INTO users (username, password, profile_img_url) VALUES (?, ?, ?)");
-            $stmt->bind_param("sss", $username, $password, $profileImgUrl);
+            $stmt = $this->conn->prepare("INSERT INTO `library`.`users` (username, password, phone_number, profile_img_url) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $username, $password, $phoneNumber, $profileImgUrl);
+            $stmt->execute();            
+        }
+
+        public function formatPhoneNumber() {
+            $stmt = $this->conn->prepare("UPDATE `library`.`users` SET phone_number = CONCAT('+1 (', SUBSTR(phone_number, 1, 3), ') ', SUBSTR(phone_number, 4, 3), '-', SUBSTR(phone_number, 7)) WHERE id = LAST_INSERT_ID()");
             $stmt->execute();
         }
     }
@@ -47,11 +52,13 @@
         // Get the form data
         $username = $_POST['username'];
         $password = $_POST['password'];
+        $phoneNumber = $_POST['phone-number'];
         $profileImgFile = isset($_FILES['profile-img']) ? $_FILES['profile-img'] : null;
 
         // Create a new user
         $user = new User($conn);
-        $user->createUser($username, $password, $profileImgFile);
+        $user->createUser($username, $password, $phoneNumber, $profileImgFile);
+        $user->formatPhoneNumber();
     }
 
     // Close the database connection
